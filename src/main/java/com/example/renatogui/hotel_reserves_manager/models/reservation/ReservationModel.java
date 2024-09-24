@@ -24,6 +24,8 @@ public class ReservationModel {
     private String id_user;
     private LocalDate check_in;
     private LocalDate check_out;
+
+    @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
 }

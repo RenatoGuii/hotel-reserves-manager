@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 @Entity
 @Table(name = "room")
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomModel {
+public class RoomModel extends RepresentationModel<RoomModel> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,7 +22,11 @@ public class RoomModel {
     private Integer number;
     private Integer capacity;
     private Double price_per_night;
+
+    @Enumerated(EnumType.STRING)
     private RoomStatus hotel_status;
+
+    @Enumerated(EnumType.STRING)
     private RoomType hotel_type;
 
 }
