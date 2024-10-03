@@ -47,4 +47,26 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<StandartError> UserNotFound(AuthenticationException e, HttpServletRequest request) {
+        StandartError err = new StandartError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Authentication error");
+        err.setMsg(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
+    @ExceptionHandler(ReservationException.class)
+    public ResponseEntity<StandartError> UserNotFound(ReservationException e, HttpServletRequest request) {
+        StandartError err = new StandartError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Booking error");
+        err.setMsg(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
 }
